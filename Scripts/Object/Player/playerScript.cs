@@ -13,7 +13,7 @@ public class playerScript : MonoBehaviourPunCallbacks
     public bool isActive = true;
 
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
         NickNameText.text = PV.IsMine ? PhotonNetwork.NickName.ToString() : PV.Owner.NickName.ToString();
         NickNameText.color = PV.IsMine ? Color.green : Color.red;
@@ -24,15 +24,15 @@ public class playerScript : MonoBehaviourPunCallbacks
             GameObject.Find("ObjectPoolParent").transform.GetChild(0).gameObject.SetActive(true);
         }
     }
-    
-    void Start()
+
+    private void Start()
     {
         GameStateManager.Instance.ReadyStateAction += OnReadyState;
         GameStateManager.Instance.FightStateAction += OnFightState;
         GameStateManager.Instance.ResultStateAction += OnResultState;
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         GameStateManager.Instance.ReadyStateAction -= OnReadyState;
         GameStateManager.Instance.FightStateAction -= OnFightState;

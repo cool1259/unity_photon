@@ -34,7 +34,7 @@ public class BulletScript : MonoBehaviour
         ObjectPool.ReturnObject(gameObject);
     }
 
-    void OnTriggerEnter2D(Collider2D col) // col을 RPC의 매개변수로 넘겨줄 수 없다
+    private void OnTriggerEnter2D(Collider2D col) // col을 RPC의 매개변수로 넘겨줄 수 없다
     {
         if (col.tag == "Ground") 
             PV.RPC("ReturnObjectRPC", RpcTarget.AllBuffered);
@@ -49,7 +49,7 @@ public class BulletScript : MonoBehaviour
     }
 
     [PunRPC]
-    public void ReturnObjectRPC()
+    private void ReturnObjectRPC()
     {
         ObjectPool.ReturnObject(gameObject);
     }

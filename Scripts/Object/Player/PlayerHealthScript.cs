@@ -71,7 +71,7 @@ public class PlayerHealthScript : MonoBehaviourPunCallbacks, IPunObservable
     }
 
     [PunRPC]
-    void ChangeColorRPC(int color)
+    private void ChangeColorRPC(int color)
     {
         switch ((ColorList)color)
         {
@@ -93,7 +93,7 @@ public class PlayerHealthScript : MonoBehaviourPunCallbacks, IPunObservable
         damagedCoolTimer = damagedCoolTime;
     }
 
-    public void RunDamagedCoolTime()
+    private void RunDamagedCoolTime()
     {
         if (damagedCoolTimer > 0f)
         {
@@ -135,7 +135,7 @@ public class PlayerHealthScript : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
     [PunRPC]
-    void DestroyRPC() => Destroy(gameObject);
+    private void DestroyRPC() => Destroy(gameObject);
 
     //변수 동기화
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

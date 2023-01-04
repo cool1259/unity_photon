@@ -18,9 +18,9 @@ public class GameStateManager : MonoBehaviour
     public event Action ReadyStateAction;
     public event Action FightStateAction;
     public event Action ResultStateAction;
-    
-   
-    void Awake()
+
+
+    private void Awake()
     {
         if (null == instance)
         {
@@ -96,6 +96,7 @@ public class GameStateManager : MonoBehaviour
         if (PhotonNetwork.IsMasterClient)
             GameManager.Instance.StartButton.SetActive(true);
     }
+
     private void EnterReadyState()
     {
         ReadyStateAction?.Invoke();
@@ -109,12 +110,14 @@ public class GameStateManager : MonoBehaviour
         if (PhotonNetwork.IsMasterClient)
             StartCoroutine(ReadyCoroutine());
     }
+
     private void EnterFightState()
     {
         FightStateAction?.Invoke();
 
         GameManager.Instance.AimJoystick.SetActive(true);
     }
+
     private void EnterResultState()
     {
         ResultStateAction?.Invoke();

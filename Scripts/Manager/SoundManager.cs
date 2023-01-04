@@ -62,7 +62,7 @@ public class SoundManager : MonoBehaviour
     }
 
     [PunRPC]
-    void ShotSoundRPC()
+    private void ShotSoundRPC()
     {
         if (ShootingSound == null)
             return;
@@ -75,7 +75,7 @@ public class SoundManager : MonoBehaviour
     }
 
     [PunRPC]
-    void DashSoundRPC()
+    private void DashSoundRPC()
     {
         if (DashSound == null)
             return;

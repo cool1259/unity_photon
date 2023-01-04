@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public Button ReGameButton;
     public Text ResultText;
 
-    void Awake()
+    private void Awake()
     {
         if (null == instance)
         {
@@ -81,14 +81,14 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    public void SynchRankingBoard()
+    private void SynchRankingBoard()
     {
         if (PhotonNetwork.IsMasterClient)
             PV.RPC("SynchRankingBoardRPC", RpcTarget.AllBuffered, RankingBoard); //방장떠날때 대비 이것도 동기화해줘야됨
     }
 
     [PunRPC]
-    public void SynchRankingBoardRPC(Dictionary<string, int> rankingBoard)
+    private void SynchRankingBoardRPC(Dictionary<string, int> rankingBoard)
     {
         RankingBoard = rankingBoard;
     }
@@ -105,15 +105,15 @@ public class GameManager : MonoBehaviour
                 InitGameState(nickName);
         }
     }
-    
-    public void InitGameState(string nickName)
+
+    private void InitGameState(string nickName)
     {
         if (PhotonNetwork.IsMasterClient)
             PV.RPC("InitGameStateRPC", RpcTarget.AllBuffered, nickName, (int)GameStateManager.Instance.NowGameState);
     }
 
     [PunRPC]
-    public void InitGameStateRPC(string nickname, int gamestate)
+    private void InitGameStateRPC(string nickname, int gamestate)
     {
         if(PhotonNetwork.LocalPlayer.NickName == nickname)
         {
@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void UpdateRankingBoard()
+    private void UpdateRankingBoard()
     {
         if (!PhotonNetwork.IsMasterClient) return;
 
@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
     }
 
     [PunRPC]
-    public void updateRankingTextRPC(string rankStr)
+    private void updateRankingTextRPC(string rankStr)
     {
         RangkingLogText.text = rankStr;
     }
@@ -158,7 +158,7 @@ public class GameManager : MonoBehaviour
     }
 
     [PunRPC]
-    void killWriteRPC(string killer, string deadPerson)
+    private void killWriteRPC(string killer, string deadPerson)
     {
         if (killer == PhotonNetwork.LocalPlayer.NickName)
         {
@@ -199,13 +199,13 @@ public class GameManager : MonoBehaviour
     }
 
     [PunRPC]
-    void killLogOnTheScreenRPC(string killer, string deadPerson)
+    private void killLogOnTheScreenRPC(string killer, string deadPerson)
     {
         ScreenText.text = killer + "님이 " + deadPerson + "님을 처치했습니다";
     }
 
     [PunRPC]
-    void SetScreenTextRPC(string str, int fontSize)
+    private void SetScreenTextRPC(string str, int fontSize)
     {
         ScreenText.fontSize = fontSize;
         ScreenText.text = str;

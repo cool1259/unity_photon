@@ -7,9 +7,9 @@ using Photon.Realtime;
 public class PlayerGunAndAimScript : MonoBehaviourPunCallbacks
 {
     public PhotonView PV;
+    private GameObject aimObject;
     [SerializeField]
     private GameObject gunObject;
-    private GameObject aimObject;
     [SerializeField]
     private SpriteRenderer spriteRender;
     [SerializeField]
@@ -59,13 +59,13 @@ public class PlayerGunAndAimScript : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void GunLookingAtRPC(Quaternion rotation)
+    private void GunLookingAtRPC(Quaternion rotation)
     {
         gunObject.transform.rotation = rotation;
     }
 
     [PunRPC]
-    public void GunFlipRPC(float x)
+    private void GunFlipRPC(float x)
     {
         gunSpriteRender.flipY = x > 0f; 
         spriteRender.flipX = gunSpriteRender.flipY; 
