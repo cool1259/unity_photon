@@ -68,12 +68,10 @@ public class PlayerMovementScript : MonoBehaviourPunCallbacks, IPunObservable
     //변수 동기화
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        //ismine일땐 보냄 위치,체력
         if (stream.IsWriting)
         {
             stream.SendNext(transform.position);
         }
-        //ismine아니면 받음 위치,체력
         else
         {
             receivePos = (Vector3)stream.ReceiveNext();

@@ -135,10 +135,10 @@ public class GameManager : MonoBehaviour
     {
         if (!PhotonNetwork.IsMasterClient) return;
 
-        var sortedDic = RankingBoard.OrderByDescending(num => num.Value); //벨류값으로 내림차순
+        var sortedRankingBoard = RankingBoard.OrderByDescending(num => num.Value); //벨류값으로 내림차순
         string rankStr="";
       
-        foreach (var rank in sortedDic)
+        foreach (var rank in sortedRankingBoard)
         {
             rankStr += rank.Key + " : " + rank.Value + "킬\n";
         }

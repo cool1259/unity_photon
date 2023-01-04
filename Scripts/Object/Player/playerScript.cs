@@ -42,8 +42,6 @@ public class playerScript : MonoBehaviourPunCallbacks
     private void OnReadyState()
     {
         isActive = false; //행동 못 하게
-        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-
 
         if (PV.IsMine)
         {
@@ -64,6 +62,7 @@ public class playerScript : MonoBehaviourPunCallbacks
 
     private void ChangeRandomPosition()
     {
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         transform.position = new Vector3(UnityEngine.Random.Range(-10f, 10f), UnityEngine.Random.Range(-5f, 5f), 0);
         GetComponent<Animator>().SetBool("walk", false);
     }
